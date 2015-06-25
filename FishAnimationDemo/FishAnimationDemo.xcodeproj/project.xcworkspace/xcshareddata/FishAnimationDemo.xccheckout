@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8D40259C-EF47-40AF-84AC-4CE9019741DA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>23A7E9C68A51FFACA854FD8713D3D60F4D6D3755</key>
+		<string>https://github.com/AugustRush/FishAnimation.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>FishAnimationDemo/FishAnimationDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>23A7E9C68A51FFACA854FD8713D3D60F4D6D3755</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AugustRush/FishAnimation.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>23A7E9C68A51FFACA854FD8713D3D60F4D6D3755</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>23A7E9C68A51FFACA854FD8713D3D60F4D6D3755</string>
+			<key>IDESourceControlWCCName</key>
+			<string>FishAnimation</string>
+		</dict>
+	</array>
+</dict>
+</plist>
