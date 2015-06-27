@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9720B23C1B3D5B1F00648ABE /* FishAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9720B23B1B3D5B1F00648ABE /* FishAnimationGroup.m */; };
+		9720B23F1B3D667500648ABE /* FishAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9720B23E1B3D667500648ABE /* FishAnimator.m */; };
 		97F351E81B3BAC7100518E0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F351E71B3BAC7100518E0D /* main.m */; };
 		97F351EB1B3BAC7100518E0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F351EA1B3BAC7100518E0D /* AppDelegate.m */; };
 		97F351EE1B3BAC7100518E0D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F351ED1B3BAC7100518E0D /* FirstViewController.m */; };
@@ -15,6 +17,10 @@
 		97F351F61B3BAC7100518E0D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97F351F51B3BAC7100518E0D /* Images.xcassets */; };
 		97F351F91B3BAC7100518E0D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F351F71B3BAC7100518E0D /* LaunchScreen.xib */; };
 		97F352051B3BAC7100518E0D /* FishAnimationDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F352041B3BAC7100518E0D /* FishAnimationDemoTests.m */; };
+		97F352471B3C413000518E0D /* FishAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F352421B3C413000518E0D /* FishAnimation.m */; };
+		97F352481B3C413000518E0D /* FishBasicAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F352441B3C413000518E0D /* FishBasicAnimation.m */; };
+		97F352491B3C413000518E0D /* FishTimingFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F352461B3C413000518E0D /* FishTimingFunction.m */; };
+		97F3524C1B3C418F00518E0D /* NSObject+FishAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F3524B1B3C418F00518E0D /* NSObject+FishAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9720B23A1B3D5B1F00648ABE /* FishAnimationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishAnimationGroup.h; sourceTree = "<group>"; };
+		9720B23B1B3D5B1F00648ABE /* FishAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimationGroup.m; sourceTree = "<group>"; };
+		9720B23D1B3D667500648ABE /* FishAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishAnimator.h; sourceTree = "<group>"; };
+		9720B23E1B3D667500648ABE /* FishAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimator.m; sourceTree = "<group>"; };
 		97F351E21B3BAC7100518E0D /* FishAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F351E61B3BAC7100518E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F351E71B3BAC7100518E0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -43,7 +53,15 @@
 		97F351FE1B3BAC7100518E0D /* FishAnimationDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FishAnimationDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F352031B3BAC7100518E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F352041B3BAC7100518E0D /* FishAnimationDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FishAnimationDemoTests.m; sourceTree = "<group>"; };
-		97F352101B3BAD7400518E0D /* FishAnimationKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FishAnimationKit.h; path = ../../../../../../Documents/FishAnimationKit.h; sourceTree = "<group>"; };
+		97F352401B3C413000518E0D /* Fish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fish.h; sourceTree = "<group>"; };
+		97F352411B3C413000518E0D /* FishAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishAnimation.h; sourceTree = "<group>"; };
+		97F352421B3C413000518E0D /* FishAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimation.m; sourceTree = "<group>"; };
+		97F352431B3C413000518E0D /* FishBasicAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishBasicAnimation.h; sourceTree = "<group>"; };
+		97F352441B3C413000518E0D /* FishBasicAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishBasicAnimation.m; sourceTree = "<group>"; };
+		97F352451B3C413000518E0D /* FishTimingFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishTimingFunction.h; sourceTree = "<group>"; };
+		97F352461B3C413000518E0D /* FishTimingFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishTimingFunction.m; sourceTree = "<group>"; };
+		97F3524A1B3C418F00518E0D /* NSObject+FishAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+FishAnimation.h"; sourceTree = "<group>"; };
+		97F3524B1B3C418F00518E0D /* NSObject+FishAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+FishAnimation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +103,7 @@
 		97F351E41B3BAC7100518E0D /* FishAnimationDemo */ = {
 			isa = PBXGroup;
 			children = (
-				97F3520E1B3BAC9D00518E0D /* source */,
+				97F3523F1B3C413000518E0D /* Fish */,
 				97F351E91B3BAC7100518E0D /* AppDelegate.h */,
 				97F351EA1B3BAC7100518E0D /* AppDelegate.m */,
 				97F351EC1B3BAC7100518E0D /* FirstViewController.h */,
@@ -126,12 +144,25 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		97F3520E1B3BAC9D00518E0D /* source */ = {
+		97F3523F1B3C413000518E0D /* Fish */ = {
 			isa = PBXGroup;
 			children = (
-				97F352101B3BAD7400518E0D /* FishAnimationKit.h */,
+				97F352401B3C413000518E0D /* Fish.h */,
+				9720B23D1B3D667500648ABE /* FishAnimator.h */,
+				9720B23E1B3D667500648ABE /* FishAnimator.m */,
+				97F352411B3C413000518E0D /* FishAnimation.h */,
+				97F352421B3C413000518E0D /* FishAnimation.m */,
+				97F352431B3C413000518E0D /* FishBasicAnimation.h */,
+				97F352441B3C413000518E0D /* FishBasicAnimation.m */,
+				9720B23A1B3D5B1F00648ABE /* FishAnimationGroup.h */,
+				9720B23B1B3D5B1F00648ABE /* FishAnimationGroup.m */,
+				97F352451B3C413000518E0D /* FishTimingFunction.h */,
+				97F352461B3C413000518E0D /* FishTimingFunction.m */,
+				97F3524A1B3C418F00518E0D /* NSObject+FishAnimation.h */,
+				97F3524B1B3C418F00518E0D /* NSObject+FishAnimation.m */,
 			);
-			path = source;
+			name = Fish;
+			path = ../../Fish;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,10 +265,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97F3524C1B3C418F00518E0D /* NSObject+FishAnimation.m in Sources */,
 				97F351F11B3BAC7100518E0D /* SecondViewController.m in Sources */,
 				97F351EB1B3BAC7100518E0D /* AppDelegate.m in Sources */,
+				97F352471B3C413000518E0D /* FishAnimation.m in Sources */,
+				97F352491B3C413000518E0D /* FishTimingFunction.m in Sources */,
+				9720B23C1B3D5B1F00648ABE /* FishAnimationGroup.m in Sources */,
+				9720B23F1B3D667500648ABE /* FishAnimator.m in Sources */,
 				97F351EE1B3BAC7100518E0D /* FirstViewController.m in Sources */,
 				97F351E81B3BAC7100518E0D /* main.m in Sources */,
+				97F352481B3C413000518E0D /* FishBasicAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +469,7 @@
 				97F3520A1B3BAC7100518E0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97F3520B1B3BAC7100518E0D /* Build configuration list for PBXNativeTarget "FishAnimationDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +478,7 @@
 				97F3520D1B3BAC7100518E0D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

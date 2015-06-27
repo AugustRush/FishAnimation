@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "Fish.h"
 
 @interface FirstViewController ()
 
@@ -16,7 +17,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    
+    FishAnimation *animation = [[FishAnimation alloc] init];
+    [self fish_addAnimation:animation forKey:@"test"];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self fish_removeAnimationForKey:@"test"];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
