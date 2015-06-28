@@ -17,8 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
+
     FishAnimation *animation = [[FishAnimation alloc] init];
     [self fish_addAnimation:animation forKey:@"test"];
     

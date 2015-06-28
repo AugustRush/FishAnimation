@@ -10,4 +10,11 @@
 
 @implementation FishAnimation
 
++(instancetype)animation
+{
+    FishAnimation *animation = [[FishAnimation alloc] init];
+    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeLinear];
+    return animation;
+}
+
 @end

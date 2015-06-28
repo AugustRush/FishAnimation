@@ -7,7 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
+    FishAnimationTimingFunctionTypeLinear,
+};
 
 @interface FishTimingFunction : NSObject
+
+@property (nonatomic, assign) FishAnimationTimingFunctionType timingFunctionType;
+
++(instancetype)timingFunctionWithType:(FishAnimationTimingFunctionType)type;
 
 @end
