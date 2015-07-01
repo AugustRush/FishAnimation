@@ -18,12 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    FishAnimation *animation = [[FishAnimation alloc] init];
+//    CAAnimation
+    FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:@"view.layer.backgroundColor"];
+    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeCubic];
+    animation.duration = 5;
+    animation.fromValue = [UIColor whiteColor];
+    animation.toValue = [UIColor redColor];
     [self fish_addAnimation:animation forKey:@"test"];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self fish_removeAnimationForKey:@"test"];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self fish_removeAnimationForKey:@"test"];
+//    });
 }
 
 - (void)didReceiveMemoryWarning {

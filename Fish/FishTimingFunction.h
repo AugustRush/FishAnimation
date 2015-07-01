@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef CGFloat(^TimingCurve)(CGFloat t);
+
 typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
     FishAnimationTimingFunctionTypeLinear,
+    FishAnimationTimingFunctionTypeCubic
 };
 
 @interface FishTimingFunction : NSObject
@@ -18,5 +21,7 @@ typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
 @property (nonatomic, assign) FishAnimationTimingFunctionType timingFunctionType;
 
 +(instancetype)timingFunctionWithType:(FishAnimationTimingFunctionType)type;
+
+-(CGFloat)getValueWithCurrentTime:(CFTimeInterval)time;
 
 @end

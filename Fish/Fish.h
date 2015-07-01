@@ -10,6 +10,7 @@
 #define FishAnimationDemo_Fish_h
 
 #import "FishAnimation.h"
+#import "FishPropertyAnimation.h"
 #import "FishBasicAnimation.h"
 #import "FishTimingFunction.h"
 #import "FishAnimationGroup.h"

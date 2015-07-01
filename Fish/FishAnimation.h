@@ -23,5 +23,7 @@
 
 @property (nonatomic, strong) FishTimingFunction *timingFunction;
 @property (nonatomic, weak) id<FishAnimationDelegate> delegate;
+@property CFTimeInterval duration;
+@property (nonatomic, assign) BOOL completed;
 
 @end

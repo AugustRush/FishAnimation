@@ -8,36 +8,53 @@
 
 #import "FishTimingFunction.h"
 
-//  t: current time
-//  b: beginning value
-//  c: change in value
-//  d: duration
-typedef CGFloat(^TimingFunction)(CGFloat t,CGFloat b,CGFloat c,CGFloat d);
+static TimingCurve fishLinear = ^CGFloat(CGFloat t){
+    return t;
+};
 
-static TimingFunction linear = ^CGFloat(CGFloat t, CGFloat b, CGFloat c, CGFloat d){
-    t /= d;
-    return c * t + b;
+static TimingCurve fishCubic = ^CGFloat(CGFloat t){
+    return t*t*t;
 };
 
 /**
  *  function impliment
  */
+@interface FishTimingFunction ()
+
+@property (nonatomic, copy) TimingCurve timingCurve;
+
+@end
+
 @implementation FishTimingFunction
 
 +(instancetype)timingFunctionWithType:(FishAnimationTimingFunctionType)type
 {
     FishTimingFunction *timingFunction = [[FishTimingFunction alloc] init];
     timingFunction.timingFunctionType = type;
+    timingFunction.timingCurve = [timingFunction getTimingCurveWithType:type];
     return timingFunction;
 }
 
--(instancetype)init
+-(TimingCurve)getTimingCurveWithType:(FishAnimationTimingFunctionType)type
 {
-    self = [super init];
-    if (self) {
-        
+    switch (type) {
+        case FishAnimationTimingFunctionTypeLinear: {
+            return fishLinear;
+            break;
+        }
+        case FishAnimationTimingFunctionTypeCubic: {
+            return fishCubic;
+            break;
+        }
+        default: {
+            break;
+        }
     }
-    return self;
+}
+
+-(CGFloat)getValueWithCurrentTime:(CFTimeInterval)time
+{
+    return self.timingCurve(time);
 }
 
 @end

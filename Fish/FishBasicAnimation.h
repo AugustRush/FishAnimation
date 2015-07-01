@@ -6,8 +6,11 @@
 //  Copyright (c) 2015年 August. All rights reserved.
 //
 
-#import "FishAnimation.h"
+#import "FishPropertyAnimation.h"
 
-@interface FishBasicAnimation : FishAnimation
+@interface FishBasicAnimation : FishPropertyAnimation
+
+@property (nonatomic) id startValue;
+@property (nonatomic) id endValue;
 
 @end

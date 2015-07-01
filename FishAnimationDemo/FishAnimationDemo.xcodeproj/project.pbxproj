@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9720B23C1B3D5B1F00648ABE /* FishAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 9720B23B1B3D5B1F00648ABE /* FishAnimationGroup.m */; };
 		9720B23F1B3D667500648ABE /* FishAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9720B23E1B3D667500648ABE /* FishAnimator.m */; };
+		978961641B43B25200BF9EBA /* FishPropertyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 978961631B43B25200BF9EBA /* FishPropertyAnimation.m */; };
 		97F351E81B3BAC7100518E0D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F351E71B3BAC7100518E0D /* main.m */; };
 		97F351EB1B3BAC7100518E0D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F351EA1B3BAC7100518E0D /* AppDelegate.m */; };
 		97F351EE1B3BAC7100518E0D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97F351ED1B3BAC7100518E0D /* FirstViewController.m */; };
@@ -38,6 +39,8 @@
 		9720B23B1B3D5B1F00648ABE /* FishAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimationGroup.m; sourceTree = "<group>"; };
 		9720B23D1B3D667500648ABE /* FishAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishAnimator.h; sourceTree = "<group>"; };
 		9720B23E1B3D667500648ABE /* FishAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimator.m; sourceTree = "<group>"; };
+		978961621B43B25200BF9EBA /* FishPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishPropertyAnimation.h; sourceTree = "<group>"; };
+		978961631B43B25200BF9EBA /* FishPropertyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishPropertyAnimation.m; sourceTree = "<group>"; };
 		97F351E21B3BAC7100518E0D /* FishAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F351E61B3BAC7100518E0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97F351E71B3BAC7100518E0D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 				9720B23E1B3D667500648ABE /* FishAnimator.m */,
 				97F352411B3C413000518E0D /* FishAnimation.h */,
 				97F352421B3C413000518E0D /* FishAnimation.m */,
+				978961621B43B25200BF9EBA /* FishPropertyAnimation.h */,
+				978961631B43B25200BF9EBA /* FishPropertyAnimation.m */,
 				97F352431B3C413000518E0D /* FishBasicAnimation.h */,
 				97F352441B3C413000518E0D /* FishBasicAnimation.m */,
 				9720B23A1B3D5B1F00648ABE /* FishAnimationGroup.h */,
@@ -268,6 +273,7 @@
 				97F3524C1B3C418F00518E0D /* NSObject+FishAnimation.m in Sources */,
 				97F351F11B3BAC7100518E0D /* SecondViewController.m in Sources */,
 				97F351EB1B3BAC7100518E0D /* AppDelegate.m in Sources */,
+				978961641B43B25200BF9EBA /* FishPropertyAnimation.m in Sources */,
 				97F352471B3C413000518E0D /* FishAnimation.m in Sources */,
 				97F352491B3C413000518E0D /* FishTimingFunction.m in Sources */,
 				9720B23C1B3D5B1F00648ABE /* FishAnimationGroup.m in Sources */,

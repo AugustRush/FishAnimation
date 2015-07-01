@@ -9,6 +9,19 @@
 #import "FishAnimator.h"
 #import <QuartzCore/QuartzCore.h>
 
+@class FishAnimation;
+@interface FishAnimationItem : NSObject
+
+@property (nonatomic, weak) id object;
+@property (nonatomic, copy) NSString *key;
+@property (nonatomic, strong) FishAnimation *animation;
+
+@end
+
+@implementation FishAnimationItem
+
+@end
+
 static CFHashCode pointerHash(const void *object){
     return (CFHashCode)(object);
 }
@@ -68,7 +81,22 @@ static Boolean pointerEqual(const void *object1,const void *object2){
 
 -(void)render
 {
-    NSLog(@"render %@ %@",_animationDict,_animateList.allObjects);
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    if (_animateList.allObjects.count > 0) {
+        for (FishAnimationItem *item in _animateList.allObjects) {
+            if (!item.animation.completed) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
+                [item.animation performSelectorOnMainThread:@selector(_updateProgress:) withObject:item.object waitUntilDone:NO];
+#pragma clang diagnostic pop
+            }else{
+                [self removeAnimationForObject:item.object Key:item.key];
+            }
+        }
+    }
+    
+    [CATransaction commit];
 }
 
 -(void)updateDisplayLinkState
@@ -88,11 +116,17 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     }
     NSMutableDictionary *dict = CFDictionaryGetValue(_animationDict, (__bridge void *)object);
     if (dict == nil) {
-        CFDictionarySetValue(_animationDict, (__bridge void *)object, (__bridge void *)[NSMutableDictionary dictionaryWithObject:animation forKey:key]);
-    }else{
-        dict[key] = animation;
+        dict = @{}.mutableCopy;
+        CFDictionarySetValue(_animationDict, (__bridge void *)object, (__bridge void *)dict);
     }
-    [_animateList addObject:animation];
+    FishAnimationItem *item = [FishAnimationItem new];
+    item.object = object;
+    item.key = key;
+    item.animation = animation;
+    
+    dict[key] = item;
+    
+    [_animateList addObject:item];
     [self updateDisplayLinkState];
 }
 
