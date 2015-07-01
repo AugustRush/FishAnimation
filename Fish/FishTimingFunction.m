@@ -8,12 +8,32 @@
 
 #import "FishTimingFunction.h"
 
-static TimingCurve fishLinear = ^CGFloat(CGFloat t){
+static TimingCurve FishLinear = TimingCurve(t){
     return t;
 };
 
-static TimingCurve fishCubic = ^CGFloat(CGFloat t){
+static TimingCurve FishSquare = TimingCurve(t){
+    return t*t;
+};
+
+static TimingCurve FishCubic = TimingCurve(t){
     return t*t*t;
+};
+
+static TimingCurve FishQuartic = TimingCurve(t){
+    return t*t*t*t;
+};
+
+static TimingCurve FishQuarticEaseInOut = TimingCurve(t){
+    if(t < 0.5)
+    {
+        return 8 * t * t * t * t;
+    }
+    else
+    {
+        CGFloat f = (t - 1);
+        return -8 * f * f * f * f + 1;
+    }
 };
 
 /**
@@ -39,13 +59,27 @@ static TimingCurve fishCubic = ^CGFloat(CGFloat t){
 {
     switch (type) {
         case FishAnimationTimingFunctionTypeLinear: {
-            return fishLinear;
+            return FishLinear;
             break;
         }
         case FishAnimationTimingFunctionTypeCubic: {
-            return fishCubic;
+            return FishCubic;
             break;
         }
+        case FishAnimationTimingFunctionTypeSquare: {
+            return FishSquare;
+            break;
+        }
+            
+        case FishAnimationTimingFunctionTypeQuartic: {
+            return FishQuartic;
+            break;
+        }
+        case FishAnimationTimingFunctionTypeQuarticEaseInOut: {
+            return FishQuarticEaseInOut;
+            break;
+        }
+    
         default: {
             break;
         }

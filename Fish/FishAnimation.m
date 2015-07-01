@@ -35,11 +35,12 @@ const double frameDuration = 1/60.0;
 -(void)_updateProgress:(id)object
 {
     _beginTime += frameDuration;
-    if (_beginTime >= _duration) {
+    CGFloat progress = _beginTime/(CGFloat)_duration;
+    if (progress >= 1) {
         self.completed = YES;
-        return;
+        progress = 1;
     }
-    [self animationDidChangedFrameValue:[self.timingFunction getValueWithCurrentTime:_beginTime/_duration] forObject:object];
+    [self animationDidChangedFrameValue:[self.timingFunction getValueWithCurrentTime:progress] forObject:object];
 }
 
 -(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object{}

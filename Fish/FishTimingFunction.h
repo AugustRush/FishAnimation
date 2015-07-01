@@ -10,10 +10,14 @@
 #import <UIKit/UIKit.h>
 
 typedef CGFloat(^TimingCurve)(CGFloat t);
+#define TimingCurve(t) ^CGFloat(CGFloat t)
 
 typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
     FishAnimationTimingFunctionTypeLinear,
-    FishAnimationTimingFunctionTypeCubic
+    FishAnimationTimingFunctionTypeSquare,
+    FishAnimationTimingFunctionTypeCubic,
+    FishAnimationTimingFunctionTypeQuartic,
+    FishAnimationTimingFunctionTypeQuarticEaseInOut
 };
 
 @interface FishTimingFunction : NSObject

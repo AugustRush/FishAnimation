@@ -118,6 +118,11 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     if (dict == nil) {
         dict = @{}.mutableCopy;
         CFDictionarySetValue(_animationDict, (__bridge void *)object, (__bridge void *)dict);
+    }else{
+        FishAnimationItem *item = dict[key];
+        if (item.object == object) {
+            [self removeAnimationForObject:object Key:key];
+        }
     }
     FishAnimationItem *item = [FishAnimationItem new];
     item.object = object;
@@ -142,7 +147,11 @@ static Boolean pointerEqual(const void *object1,const void *object2){
 
 -(void)removeAllAnimationsForObject:(id)object
 {
-
+    if (object != nil) {
+        NSMutableDictionary *dict = CFDictionaryGetValue(_animationDict, (__bridge void *)object);
+        [dict removeAllObjects];
+        [self updateDisplayLinkState];
+    }
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "Fish.h"
 
 @interface FirstViewController ()
+@property (weak, nonatomic) IBOutlet UILabel *FirstView;
 
 @end
 
@@ -19,17 +20,32 @@
     [super viewDidLoad];
 
 //    CAAnimation
-    FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:@"view.layer.backgroundColor"];
-    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeCubic];
-    animation.duration = 5;
-    animation.fromValue = [UIColor whiteColor];
-    animation.toValue = [UIColor redColor];
-    [self fish_addAnimation:animation forKey:@"test"];
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self fish_removeAnimationForKey:@"test"];
-//    });
 }
+
+- (IBAction)testAnimation:(id)sender {
+    FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:kFishViewCenter];
+    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeQuarticEaseInOut];
+    animation.duration = 1;
+    //    animation.fromValue = @(1);
+    //    animation.toValue = @(0.5);
+//    animation.fromValue = [UIColor greenColor];
+//    animation.toValue = [UIColor redColor];
+    animation.fromValue = [NSValue valueWithCGPoint:self.FirstView.center];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(100+arc4random()%200, 100+arc4random()%400)];
+    [self.FirstView fish_addAnimation:animation forKey:@"test"];
+ 
+    
+    FishPropertyAnimation *animation1 = [FishPropertyAnimation animationWithKeyPath:kFishViewBackgroundColor];
+    animation1.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeCubic];
+    animation1.duration = 1;
+    //    animation.fromValue = @(1);
+    //    animation.toValue = @(0.5);
+        animation1.fromValue = [UIColor greenColor];
+        animation1.toValue = [UIColor redColor];
+    [self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

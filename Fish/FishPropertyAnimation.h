@@ -14,6 +14,16 @@
 @property id fromValue;
 @property id toValue;
 
+//use the provided constants to refresnce.
 +(instancetype)animationWithKeyPath:(NSString *)path;
 
 @end
+
+
+//////view animate key path constants
+
+extern NSString *const kFishViewAlpha;
+extern NSString *const kFishViewBackgroundColor;
+extern NSString *const kFishViewCenter;
+
+/////////layer animate key path constants
