@@ -33,7 +33,10 @@
 //    animation.toValue = [UIColor redColor];
     animation.fromValue = [NSValue valueWithCGPoint:self.FirstView.center];
     animation.toValue = [NSValue valueWithCGPoint:CGPointMake(100+arc4random()%200, 100+arc4random()%400)];
-    [self.FirstView fish_addAnimation:animation forKey:@"test"];
+    //[self.FirstView fish_addAnimation:animation forKey:@"test"];
+    [self.FirstView fish_addAnimation:animation forKey:@"test" completed:^{
+        NSLog(@"the first animation is completed");
+    }];
  
     
     FishPropertyAnimation *animation1 = [FishPropertyAnimation animationWithKeyPath:kFishViewBackgroundColor];
@@ -43,7 +46,10 @@
     //    animation.toValue = @(0.5);
         animation1.fromValue = [UIColor greenColor];
         animation1.toValue = [UIColor redColor];
-    [self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
+    //[self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
+    [self.FirstView fish_addAnimation:animation1 forKey:@"test1" completed:^{
+        NSLog(@"the second animation is completed");
+    }];
 }
 
 

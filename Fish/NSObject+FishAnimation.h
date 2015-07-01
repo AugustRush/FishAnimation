@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "FishAnimation.h"
+#import "FishAnimator.h"
 
 @interface NSObject (FishAnimation)
 
--(void)fish_addAnimation:(FishAnimation *)animation forKey:(NSString *)key;
+-(void)fish_addAnimation:(FishAnimation *)animation forKey:(NSString *)key completed:(AnimationCompleted) completed;
 -(void)fish_removeAnimationForKey:(NSString *)key;
 -(void)fish_removeAllAnimations;
 

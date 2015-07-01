@@ -15,6 +15,7 @@
 @property (nonatomic, weak) id object;
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, strong) FishAnimation *animation;
+@property (nonatomic, strong) AnimationCompleted completed;
 
 @end
 
@@ -91,7 +92,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
                 [item.animation performSelectorOnMainThread:@selector(_updateProgress:) withObject:item.object waitUntilDone:NO];
 #pragma clang diagnostic pop
             }else{
-                [self removeAnimationForObject:item.object Key:item.key];
+                [self removeAnimationForObject:item.object Key:item.key completed:item.completed];
             }
         }
     }
@@ -106,7 +107,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
 
 #pragma mark - public methods
 
--(void)addAnimation:(FishAnimation *)animation forObject:(id)object key:(NSString *)key
+-(void)addAnimation:(FishAnimation *)animation forObject:(id)object key:(NSString *)key completed:(AnimationCompleted)completed
 {
     if (!animation && !object) {
         return;
@@ -121,13 +122,14 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     }else{
         FishAnimationItem *item = dict[key];
         if (item.object == object) {
-            [self removeAnimationForObject:object Key:key];
+            [self removeAnimationForObject:object Key:key completed:completed];
         }
     }
     FishAnimationItem *item = [FishAnimationItem new];
     item.object = object;
     item.key = key;
     item.animation = animation;
+    item.completed = completed;
     
     dict[key] = item;
     
@@ -135,7 +137,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     [self updateDisplayLinkState];
 }
 
--(void)removeAnimationForObject:(id)object Key:(NSString *)key
+-(void)removeAnimationForObject:(id)object Key:(NSString *)key completed:(AnimationCompleted)completed
 {
     if (!key || !object) {
         return;
@@ -143,6 +145,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     NSMutableDictionary *dict = CFDictionaryGetValue(_animationDict, (__bridge void *)object);
     [dict removeObjectForKey:key];
     [self updateDisplayLinkState];
+    completed();
 }
 
 -(void)removeAllAnimationsForObject:(id)object

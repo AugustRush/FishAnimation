@@ -11,14 +11,14 @@
 
 @implementation NSObject (FishAnimation)
 
--(void)fish_addAnimation:(FishAnimation *)animation forKey:(NSString *)key
+-(void)fish_addAnimation:(FishAnimation *)animation forKey:(NSString *)key completed:(AnimationCompleted)completed
 {
-    [[FishAnimator shareAnimator] addAnimation:animation forObject:self key:key];
+    [[FishAnimator shareAnimator] addAnimation:animation forObject:self key:key completed:completed];
 }
 
 -(void)fish_removeAnimationForKey:(NSString *)key
 {
-    [[FishAnimator shareAnimator] removeAnimationForObject:self Key:key];
+    [[FishAnimator shareAnimator] removeAnimationForObject:self Key:key completed:nil];
 }
 
 -(void)fish_removeAllAnimations
