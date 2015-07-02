@@ -27,29 +27,18 @@
     FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:kFishViewCenter];
     animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeQuarticEaseInOut];
     animation.duration = 1;
-    //    animation.fromValue = @(1);
-    //    animation.toValue = @(0.5);
-//    animation.fromValue = [UIColor greenColor];
-//    animation.toValue = [UIColor redColor];
     animation.fromValue = [NSValue valueWithCGPoint:self.FirstView.center];
     animation.toValue = [NSValue valueWithCGPoint:CGPointMake(100+arc4random()%200, 100+arc4random()%400)];
-    //[self.FirstView fish_addAnimation:animation forKey:@"test"];
-    [self.FirstView fish_addAnimation:animation forKey:@"test" completed:^{
-        NSLog(@"the first animation is completed");
-    }];
- 
+    [self.FirstView fish_addAnimation:animation forKey:@"test"];
+
     
     FishPropertyAnimation *animation1 = [FishPropertyAnimation animationWithKeyPath:kFishViewBackgroundColor];
     animation1.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeCubic];
     animation1.duration = 1;
-    //    animation.fromValue = @(1);
-    //    animation.toValue = @(0.5);
-        animation1.fromValue = [UIColor greenColor];
-        animation1.toValue = [UIColor redColor];
-    //[self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
-    [self.FirstView fish_addAnimation:animation1 forKey:@"test1" completed:^{
-        NSLog(@"the second animation is completed");
-    }];
+
+    animation1.fromValue = [UIColor colorWithWhite:(arc4random()%10)/10.0 alpha:1];
+    animation1.toValue = [UIColor colorWithRed:(arc4random()%10)/10.0 green:(arc4random()%10)/10.0 blue:(arc4random()%10)/10.0 alpha:1];
+    [self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
 }
 
 

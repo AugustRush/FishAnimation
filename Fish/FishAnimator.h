@@ -9,14 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "FishAnimation.h"
 
-typedef void(^AnimationCompleted)(void);
-
 @interface FishAnimator : NSObject
 
-+(instancetype)shareAnimator;
++ (instancetype)shareAnimator;
 
--(void)addAnimation:(FishAnimation *)animation forObject:(id)object key:(NSString *)key completed:(AnimationCompleted) completed;
--(void)removeAnimationForObject:(id)object Key:(NSString *)key completed:(AnimationCompleted) completed;
--(void)removeAllAnimationsForObject:(id)object;
+- (void)addAnimation:(FishAnimation *)animation forObject:(id)object key:(NSString *)key;
+- (void)removeAnimationForObject:(id)object Key:(NSString *)key;
+- (void)removeAllAnimationsForObject:(id)object;
 
 @end
