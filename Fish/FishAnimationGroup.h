@@ -6,8 +6,12 @@
 //  Copyright (c) 2015年 August. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "FishAnimation.h"
 
-@interface FishAnimationGroup : NSObject
+@interface FishAnimationGroup : FishAnimation
+
+@property (nonatomic, strong, readonly) NSArray *animations;
+
+-(instancetype)initWithAnimations:(NSArray *)animations;
 
 @end

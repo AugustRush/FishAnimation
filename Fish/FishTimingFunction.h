@@ -17,7 +17,8 @@ typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
     FishAnimationTimingFunctionTypeSquare,
     FishAnimationTimingFunctionTypeCubic,
     FishAnimationTimingFunctionTypeQuartic,
-    FishAnimationTimingFunctionTypeQuarticEaseInOut
+    FishAnimationTimingFunctionTypeQuarticEaseInOut,
+    FishAnimationTimingFunctionTypeSine
 };
 
 @interface FishTimingFunction : NSObject

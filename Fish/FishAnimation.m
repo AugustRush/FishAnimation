@@ -9,8 +9,6 @@
 #import "FishAnimation.h"
 #import "FishAnimator.h"
 
-const double frameDuration = 1/60.0;
-
 @implementation FishAnimation
 {
     CFTimeInterval _beginTime;
@@ -35,7 +33,7 @@ const double frameDuration = 1/60.0;
 -(void)_updateProgress:(id)object
 {
     _beginTime += frameDuration;
-    CGFloat progress = _beginTime/(CGFloat)_duration;
+    CFTimeInterval progress = _beginTime/(CFTimeInterval)_duration;
     if (progress >= 1) {
         self.completed = YES;
         progress = 1;

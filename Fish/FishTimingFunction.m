@@ -36,6 +36,10 @@ static TimingCurve FishQuarticEaseInOut = TimingCurve(t){
     }
 };
 
+static TimingCurve FishSine = TimingCurve(t){
+    return sin((t - 1) * M_PI_2) + 1;
+};
+
 /**
  *  function impliment
  */
@@ -76,6 +80,10 @@ static TimingCurve FishQuarticEaseInOut = TimingCurve(t){
             break;
         }
         case FishAnimationTimingFunctionTypeQuarticEaseInOut: {
+            return FishQuarticEaseInOut;
+            break;
+        }
+        case FishAnimationTimingFunctionTypeSine: {
             return FishQuarticEaseInOut;
             break;
         }

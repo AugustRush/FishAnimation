@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "FishTimingFunction.h"
 
+static const CFTimeInterval frameDuration = 1/60.0;
+
 @class FishAnimation;
 @protocol FishAnimationDelegate <NSObject>
 
@@ -25,5 +27,6 @@
 @property (nonatomic, weak) id<FishAnimationDelegate> delegate;
 @property CFTimeInterval duration;
 @property (nonatomic, assign) BOOL completed;
+-(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object;
 
 @end

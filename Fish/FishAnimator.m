@@ -88,7 +88,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
             if (!item.animation.completed) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-                [item.animation performSelectorOnMainThread:@selector(_updateProgress:) withObject:item.object waitUntilDone:NO];
+                [item.animation performSelector:@selector(_updateProgress:) withObject:item.object afterDelay:0];
 #pragma clang diagnostic pop
             }else{
                 [self removeAnimationForObject:item.object Key:item.key];

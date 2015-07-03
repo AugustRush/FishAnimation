@@ -86,7 +86,6 @@ static CaculateValueFunction FishColorFunc = CaculateValueFunction(f, s, t){
     }
     
     last = FishMath(start, to, f);
-
     return [UIColor colorWithRed:last.first green:last.second blue:last.third alpha:last.fouth];
 };
 
