@@ -20,10 +20,11 @@
     [super viewDidLoad];
 
 //    CAAnimation
-    
+//    CAMediaTimingFunction
 }
 
 - (IBAction)testAnimation:(id)sender {
+    
     FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:kFishViewCenter];
     animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeQuarticEaseInOut];
     animation.duration = 1;
@@ -36,9 +37,18 @@
     animation1.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeCubic];
     animation1.duration = 1;
 
-    animation1.fromValue = [UIColor colorWithWhite:(arc4random()%10)/10.0 alpha:1];
+    animation1.fromValue = self.FirstView.backgroundColor;
     animation1.toValue = [UIColor colorWithRed:(arc4random()%10)/10.0 green:(arc4random()%10)/10.0 blue:(arc4random()%10)/10.0 alpha:1];
     [self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
+
+    FishPropertyAnimation *animation2 = [FishPropertyAnimation animationWithKeyPath:kFishViewSize];
+    animation2.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeQuarticEaseInOut];
+    animation2.duration = 1;
+    
+    animation2.fromValue = [NSValue valueWithCGSize:CGSizeMake(200, 100)];
+    animation2.toValue = [NSValue valueWithCGSize:CGSizeMake(100, 200)];
+    [self.FirstView fish_addAnimation:animation2 forKey:@"test2"];
+ 
 }
 
 

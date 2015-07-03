@@ -25,5 +25,6 @@
 extern NSString *const kFishViewAlpha;
 extern NSString *const kFishViewBackgroundColor;
 extern NSString *const kFishViewCenter;
+extern NSString *const kFishViewSize;
 
 /////////layer animate key path constants

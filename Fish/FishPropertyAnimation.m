@@ -13,6 +13,7 @@
 NSString *const kFishViewAlpha = @"alpha";
 NSString *const kFishViewBackgroundColor = @"backgroundColor";
 NSString *const kFishViewCenter = @"center";
+NSString *const kFishViewSize = @"bounds";
 /**
  *  define caculate function block
  *
@@ -26,32 +27,93 @@ NSString *const kFishViewCenter = @"center";
 typedef id (^CaculateValueFunction)(CGFloat frame,id startValue, id toValue);
 #define CaculateValueFunction(frame,startValue,toValue) ^id(CGFloat frame,id startValue, id toValue)
 
+struct FishMathStruct {
+    CGFloat first,second,third,fouth,fifth,sixth;
+};
+
+NS_INLINE struct FishMathStruct FishMath(struct FishMathStruct start,struct FishMathStruct to,CGFloat frame){
+    
+    struct FishMathStruct last;
+    last.first = start.first + (to.first - start.first)*frame;
+    last.second = start.second + (to.second - start.second)*frame;
+    last.third = start.third + (to.third - start.third)*frame;
+    last.fouth = start.fouth + (to.fouth - start.fouth)*frame;
+    last.fifth = start.fifth + (to.fifth - start.fifth)*frame;
+    last.sixth = start.sixth + (to.sixth - start.fifth)*frame;
+    return last;
+};
+
 static CaculateValueFunction FishAlphaFunc = CaculateValueFunction(f, s, t){
-    CGFloat to = [t floatValue];
-    CGFloat start = [s floatValue];
-    return [NSNumber numberWithFloat:start+f*(to - start)];
+    struct FishMathStruct start,to,last;
+    start.first = [s floatValue];
+    to.first = [t floatValue];
+    last = FishMath(start, to, f);
+    return [NSNumber numberWithFloat:last.first];
 };
 
 static CaculateValueFunction FishColorFunc = CaculateValueFunction(f, s, t){
-    const CGFloat * sColor = CGColorGetComponents([s CGColor]);
-    const CGFloat * tColor = CGColorGetComponents([t CGColor]);
-    CGFloat changeR = tColor[0] - sColor[0];
-    CGFloat changeG = tColor[1] - sColor[1];
-    CGFloat changeB = tColor[2] - sColor[2];
-    CGFloat changeA = tColor[3] - sColor[3];
+    
+    CGColorRef sCGColor = [s CGColor];
+    CGColorRef tCGColor = [t CGColor];
+    const CGFloat * sColor = CGColorGetComponents(sCGColor);
+    const CGFloat * tColor = CGColorGetComponents(tCGColor);
+    
+    size_t scount = CGColorGetNumberOfComponents(sCGColor);
+    size_t tcount = CGColorGetNumberOfComponents(tCGColor);
+    struct FishMathStruct start,to,last;
+    if(scount == 4){
+        start.first = sColor[0];
+        start.second = sColor[1];
+        start.third = sColor[2];
+        start.fouth = sColor[3];
+    }else{
+        start.first = sColor[0];
+        start.second = sColor[0];
+        start.third = sColor[0];
+        start.fouth = sColor[1];
+    }
+    
+    if(tcount){
+        to.first = tColor[0];
+        to.second = tColor[1];
+        to.third = tColor[2];
+        to.fouth = tColor[3];
+    }else{
+        to.first = tColor[0];
+        to.second = tColor[0];
+        to.third = tColor[0];
+        to.fouth = tColor[1];
+    }
+    
+    last = FishMath(start, to, f);
 
-    return [UIColor colorWithRed:sColor[0]+f*changeR green:sColor[1]+f*changeG blue:sColor[2]+f*changeB alpha:sColor[3]+f*changeA];
+    return [UIColor colorWithRed:last.first green:last.second blue:last.third alpha:last.fouth];
 };
 
 static CaculateValueFunction FishCenterFunc = CaculateValueFunction(f, s, t){
-    CGFloat sX = [s CGPointValue].x;
-    CGFloat sY = [s CGPointValue].y;
-    CGFloat changeX = [t CGPointValue].x - sX;
-    CGFloat changeY = [t CGPointValue].y - sY;
-    
-    CGPoint point = CGPointMake(sX + f*changeX, sY + f*changeY);
-    return [NSValue valueWithCGPoint:point];
+    CGPoint sp = [s CGPointValue];
+    CGPoint tp = [t CGPointValue];
+    struct FishMathStruct start,to,last;
+    start.first = sp.x;
+    start.second = sp.y;
+    to.first = tp.x;
+    to.second = tp.y;
+    last = FishMath(start, to, f);
+    return [NSValue valueWithCGPoint:CGPointMake(last.first, last.second)];
 };
+
+static CaculateValueFunction FishBoundsSizeFunc = CaculateValueFunction(f, s, t){
+    CGSize sp = [s CGSizeValue];
+    CGSize tp = [t CGSizeValue];
+    struct FishMathStruct start,to,last;
+    start.first = sp.width;
+    start.second = sp.height;
+    to.first = tp.width;
+    to.second = tp.height;
+    last = FishMath(start, to, f);
+    return [NSValue valueWithCGRect:CGRectMake(0, 0, last.first, last.second)];
+};
+
 //
 //  property animation implementation
 //
@@ -87,6 +149,8 @@ static CaculateValueFunction FishCenterFunc = CaculateValueFunction(f, s, t){
         return FishColorFunc;
     }else if (keyPath == kFishViewCenter){
         return FishCenterFunc;
+    }else if (keyPath == kFishViewSize){
+        return FishBoundsSizeFunc;
     }
     
     return nil;
