@@ -30,7 +30,7 @@
     return self;
 }
 
--(void)_updateProgress:(id)object
+-(void)renderforObject:(id)object
 {
     _beginTime += frameDuration;
     CFTimeInterval progress = _beginTime/(CFTimeInterval)_duration;

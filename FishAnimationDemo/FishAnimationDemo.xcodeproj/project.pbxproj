@@ -39,6 +39,7 @@
 		9720B23B1B3D5B1F00648ABE /* FishAnimationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimationGroup.m; sourceTree = "<group>"; };
 		9720B23D1B3D667500648ABE /* FishAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishAnimator.h; sourceTree = "<group>"; };
 		9720B23E1B3D667500648ABE /* FishAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishAnimator.m; sourceTree = "<group>"; };
+		974E262F1B46861000B2A157 /* FishRenderProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishRenderProtocol.h; sourceTree = "<group>"; };
 		978961621B43B25200BF9EBA /* FishPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FishPropertyAnimation.h; sourceTree = "<group>"; };
 		978961631B43B25200BF9EBA /* FishPropertyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FishPropertyAnimation.m; sourceTree = "<group>"; };
 		97F351E21B3BAC7100518E0D /* FishAnimationDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FishAnimationDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +154,7 @@
 				97F352401B3C413000518E0D /* Fish.h */,
 				9720B23D1B3D667500648ABE /* FishAnimator.h */,
 				9720B23E1B3D667500648ABE /* FishAnimator.m */,
+				974E262F1B46861000B2A157 /* FishRenderProtocol.h */,
 				97F352411B3C413000518E0D /* FishAnimation.h */,
 				97F352421B3C413000518E0D /* FishAnimation.m */,
 				978961621B43B25200BF9EBA /* FishPropertyAnimation.h */,
@@ -407,6 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FishAnimationDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -417,6 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FishAnimationDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

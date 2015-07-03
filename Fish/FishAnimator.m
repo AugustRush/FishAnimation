@@ -86,10 +86,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     if (_animateList.allObjects.count > 0) {
         for (FishAnimationItem *item in _animateList.allObjects) {
             if (!item.animation.completed) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-                [item.animation performSelector:@selector(_updateProgress:) withObject:item.object afterDelay:0];
-#pragma clang diagnostic pop
+                [item.animation renderforObject:item.object];
             }else{
                 [self removeAnimationForObject:item.object Key:item.key];
             }

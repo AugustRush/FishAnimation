@@ -27,22 +27,24 @@
         self.animations = animations;
         self.currentSecton = 0;
         self.cumulativeTime = 0.0;
-        self.currentSectionTime = [animations[0] duration];
+        FishAnimation *animation = animations[0];
+        self.currentSectionTime = [animation duration];
     }
     return self;
 }
 
--(void)_updateProgress:(id)object
+-(void)renderforObject:(id)object
 {
     _cumulativeTime += frameDuration;
     CFTimeInterval progress = _cumulativeTime/_currentSectionTime;
     FishAnimation *animation = self.animations[self.currentSecton];
-    [animation animationDidChangedFrameValue:[self.timingFunction getValueWithCurrentTime:progress] forObject:object];
+    [animation animationDidChangedFrameValue:[animation.timingFunction getValueWithCurrentTime:progress] forObject:object];
     if (progress >= 1.0) {
         _cumulativeTime = 0.0;
         if (self.currentSecton < self.animations.count - 1) {
             ++self.currentSecton;
-            self.currentSectionTime = [self.animations[self.currentSecton] duration];
+            animation = self.animations[self.currentSecton];
+            self.currentSectionTime = [animation duration];
         }else{
             self.completed = YES;
         }

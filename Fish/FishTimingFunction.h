@@ -13,12 +13,13 @@ typedef CGFloat(^TimingCurve)(CGFloat t);
 #define TimingCurve(t) ^CGFloat(CGFloat t)
 
 typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
-    FishAnimationTimingFunctionTypeLinear,
+    FishAnimationTimingFunctionTypeLinear = 0,
     FishAnimationTimingFunctionTypeSquare,
     FishAnimationTimingFunctionTypeCubic,
     FishAnimationTimingFunctionTypeQuartic,
     FishAnimationTimingFunctionTypeQuarticEaseInOut,
-    FishAnimationTimingFunctionTypeSine
+    FishAnimationTimingFunctionTypeSine,
+    FishAnimationTimingFunctionTypeBounceEaseOut
 };
 
 @interface FishTimingFunction : NSObject

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FishTimingFunction.h"
+#import "FishRenderProtocol.h"
 
 static const CFTimeInterval frameDuration = 1/60.0;
 
@@ -19,7 +20,7 @@ static const CFTimeInterval frameDuration = 1/60.0;
 
 @end
 
-@interface FishAnimation : NSObject
+@interface FishAnimation : NSObject<FishRenderProtocol>
 
 +(instancetype)animation;
 
