@@ -60,6 +60,10 @@ static TimingCurve FishBounceEaseOut = TimingCurve(t)
     }
 };
 
+static TimingCurve FishBackEase = TimingCurve(t){
+    
+    return t * t * t - t * sin(t * M_PI);
+};
 
 /**
  *  function impliment
@@ -112,7 +116,10 @@ static TimingCurve FishBounceEaseOut = TimingCurve(t)
             return FishBounceEaseOut;
             break;
         }
-    
+        case FishAnimationTimingFunctionTypeBackEase: {
+            return FishBackEase;
+            break;
+        }
         default: {
             break;
         }
