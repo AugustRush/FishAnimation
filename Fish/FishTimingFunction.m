@@ -60,10 +60,31 @@ static TimingCurve FishBounceEaseOut = TimingCurve(t)
     }
 };
 
-static TimingCurve FishBackEase = TimingCurve(t){
+static TimingCurve FishBackEaseIn = TimingCurve(t){
     
     return t * t * t - t * sin(t * M_PI);
 };
+
+static TimingCurve FishBackEaseOut = TimingCurve(t){
+    
+    CGFloat f = (1 - t);
+    return 1 - (f * f * f - f * sin(f * M_PI));
+};
+
+static TimingCurve FishBackEaseInOut = TimingCurve(t){
+    
+    if(t < 0.5)
+    {
+        CGFloat f = 2 * t;
+        return 0.5 * (f * f * f - f * sin(f * M_PI));
+    }
+    else
+    {
+        CGFloat f = (1 - (2*t - 1));
+        return 0.5 * (1 - (f * f * f - f * sin(f * M_PI))) + 0.5;
+    }
+};
+
 
 /**
  *  function impliment
@@ -116,8 +137,16 @@ static TimingCurve FishBackEase = TimingCurve(t){
             return FishBounceEaseOut;
             break;
         }
-        case FishAnimationTimingFunctionTypeBackEase: {
-            return FishBackEase;
+        case FishAnimationTimingFunctionTypeBackEaseIn: {
+            return FishBackEaseIn;
+            break;
+        }
+        case FishAnimationTimingFunctionTypeBackEaseOut: {
+            return FishBackEaseOut;
+            break;
+        }
+        case FishAnimationTimingFunctionTypeBackEaseInOut: {
+            return FishBackEaseInOut;
             break;
         }
         default: {

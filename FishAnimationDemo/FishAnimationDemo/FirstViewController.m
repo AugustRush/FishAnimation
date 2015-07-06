@@ -26,7 +26,7 @@
 - (IBAction)testAnimation:(id)sender {
     
     FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:kFishViewCenter];
-    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeBackEase];
+    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeBackEaseInOut];
     animation.duration = 1;
     animation.fromValue = [NSValue valueWithCGPoint:self.FirstView.center];
     animation.toValue = [NSValue valueWithCGPoint:CGPointMake(100+arc4random()%200, 100+arc4random()%400)];
