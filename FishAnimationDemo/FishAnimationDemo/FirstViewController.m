@@ -26,7 +26,7 @@
 - (IBAction)testAnimation:(id)sender {
     
     FishPropertyAnimation *animation = [FishPropertyAnimation animationWithKeyPath:kFishViewCenter];
-    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeBackEaseInOut];
+    animation.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeQuartic];
     animation.duration = 1;
     animation.fromValue = [NSValue valueWithCGPoint:self.FirstView.center];
     animation.toValue = [NSValue valueWithCGPoint:CGPointMake(100+arc4random()%200, 100+arc4random()%400)];
@@ -43,11 +43,16 @@
     animation2.fromValue = [NSValue valueWithCGSize:self.FirstView.bounds.size];
     animation2.toValue = [NSValue valueWithCGSize:CGSizeMake(10+arc4random()%200, 10+arc4random()%400)];
     
+    FishPropertyAnimation *animation3 = [FishPropertyAnimation animationWithKeyPath:kFishViewTransform];
+    animation3.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeLinear];
+    animation3.duration = 2;
+    animation3.fromValue = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation(0)];
+    animation3.toValue = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation(M_PI / 2.0f)];
 //    [self.FirstView fish_addAnimation:animation forKey:@"test"];
 //    [self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
 //    [self.FirstView fish_addAnimation:animation2 forKey:@"test2"];
     
-    FishAnimationGroup *group = [[FishAnimationGroup alloc] initWithAnimations:@[animation,animation1,animation2]];
+    FishAnimationGroup *group = [[FishAnimationGroup alloc] initWithAnimations:@[animation,animation1,animation2,animation3]];
     [self.FirstView fish_addAnimation:group forKey:@"test3"];
     
     
