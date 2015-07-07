@@ -20,12 +20,6 @@
 
 #pragma mark - init methods
 
-+(instancetype)animation
-{
-    FishAnimation *animation = [[FishAnimation alloc] init];
-    return animation;
-}
-
 -(instancetype)init
 {
     self = [super init];

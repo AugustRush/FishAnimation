@@ -10,6 +10,5 @@
 
 @interface FirstViewController : UIViewController
 
-@property (nonatomic,assign) NSUInteger some;
 @end
 

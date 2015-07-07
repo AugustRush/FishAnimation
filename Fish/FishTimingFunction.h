@@ -22,7 +22,8 @@ typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
     FishAnimationTimingFunctionTypeBounceEaseOut,
     FishAnimationTimingFunctionTypeBackEaseIn,
     FishAnimationTimingFunctionTypeBackEaseOut,
-    FishAnimationTimingFunctionTypeBackEaseInOut
+    FishAnimationTimingFunctionTypeBackEaseInOut,
+    FishAnimationTimingFunctionTypeTestSpring
 };
 
 @interface FishTimingFunction : NSObject
@@ -30,6 +31,15 @@ typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
 @property (nonatomic, assign) FishAnimationTimingFunctionType timingFunctionType;
 
 +(instancetype)timingFunctionWithType:(FishAnimationTimingFunctionType)type;
+
+///**
+// *  use for custom timing curve
+// *
+// *  @param timingCurve the defined TimingCurve block
+// *
+// *  @return custom timing function
+// */
+//-(instancetype)initWithTimingCurve:(TimingCurve)timingCurve;
 
 -(CGFloat)getValueWithCurrentTime:(CFTimeInterval)time;
 

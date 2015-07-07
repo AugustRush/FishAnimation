@@ -14,8 +14,9 @@
 @property id fromValue;
 @property id toValue;
 
-//use the provided constants to refresnce.
+//use the provided constants to refrence.
 +(instancetype)animationWithKeyPath:(NSString *)path;
+-(instancetype)initWithKeyPath:(NSString *)path;
 
 @end
 
@@ -29,3 +30,5 @@ extern NSString *const kFishViewSize;
 extern NSString *const kFishViewTransform;
 
 /////////layer animate key path constants
+
+extern NSString *const kFishLayerCornerRadius;

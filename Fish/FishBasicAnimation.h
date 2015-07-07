@@ -10,7 +10,5 @@
 
 @interface FishBasicAnimation : FishPropertyAnimation
 
-@property (nonatomic) id startValue;
-@property (nonatomic) id endValue;
 
 @end

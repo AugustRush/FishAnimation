@@ -10,11 +10,20 @@
 
 #pragma mark - animated keypath constants
 
+//view
 NSString *const kFishViewAlpha = @"alpha";
 NSString *const kFishViewBackgroundColor = @"backgroundColor";
 NSString *const kFishViewCenter = @"center";
 NSString *const kFishViewSize = @"bounds";
 NSString *const kFishViewTransform = @"transform";
+
+
+//layer
+
+NSString *const kFishLayerCornerRadius = @"layer.cornerRadius";
+
+
+
 /**
  *  define caculate function block
  *
@@ -150,10 +159,18 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
 
 +(instancetype)animationWithKeyPath:(NSString *)path
 {
-    FishPropertyAnimation *animation = [[FishPropertyAnimation alloc] init];
-    animation.keyPath = path;
-    animation.caculateValueFunction = [animation getCaculateFunctionWithKeyPath:path];
+    FishPropertyAnimation *animation = [[FishPropertyAnimation alloc] initWithKeyPath:path];
     return animation;
+}
+
+-(instancetype)initWithKeyPath:(NSString *)path
+{
+    self = [super init];
+    if (self) {
+        self.keyPath = path;
+        self.caculateValueFunction = [self getCaculateFunctionWithKeyPath:path];
+    }
+    return self;
 }
 
 //override
@@ -161,9 +178,6 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
 -(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object
 {
     id value = self.caculateValueFunction(frameValue,self.fromValue,self.toValue);
-    if (self.keyPath == kFishViewTransform) {
-        [object setValue:[NSValue valueWithCGAffineTransform: CGAffineTransformIdentity] forKeyPath:self.keyPath];
-    }
     [object setValue:value forKeyPath:self.keyPath];
 }
 
@@ -179,6 +193,8 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
         return FishBoundsSizeFunc;
     }else if (keyPath == kFishViewTransform){
         return FishViewRatationFunc;
+    }else if (keyPath == kFishLayerCornerRadius){
+        return FishAlphaFunc;
     }
     
     return nil;

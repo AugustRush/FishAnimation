@@ -14,8 +14,6 @@ static const CFTimeInterval frameDuration = 1/60.0;
 
 @interface FishAnimation : NSObject<FishRenderProtocol>
 
-+(instancetype)animation;
-
 @property (nonatomic, strong) FishTimingFunction *timingFunction;
 @property (nonatomic, assign) CFTimeInterval duration;
 @property (nonatomic, assign) CFTimeInterval delay;

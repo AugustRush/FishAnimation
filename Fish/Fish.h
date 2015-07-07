@@ -12,6 +12,7 @@
 #import "FishAnimation.h"
 #import "FishPropertyAnimation.h"
 #import "FishBasicAnimation.h"
+#import "FishSpringAnimation.h"
 #import "FishTimingFunction.h"
 #import "FishAnimationGroup.h"
 #import "NSObject+FishAnimation.h"
