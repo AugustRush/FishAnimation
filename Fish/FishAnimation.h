@@ -17,7 +17,8 @@ static const CFTimeInterval frameDuration = 1/60.0;
 +(instancetype)animation;
 
 @property (nonatomic, strong) FishTimingFunction *timingFunction;
-@property CFTimeInterval duration;
+@property (nonatomic, assign) CFTimeInterval duration;
+@property (nonatomic, assign) CFTimeInterval delay;
 
 ///methods subclass must be override to custom animation
 -(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object;

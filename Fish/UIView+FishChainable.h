@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FishAnimation.h"
 
-typedef UIView* (^MoveCenterChainableBlock) (CGPoint changeOffset, FishAnimationTimingFunctionType type);
+typedef UIView* (^PointChainableBlock) (CGPoint changeOffset, FishAnimationTimingFunctionType type);
 
 @interface UIView (FishChainable)
 
--(MoveCenterChainableBlock)moveCenter;
+-(PointChainableBlock)moveCenter;
 
 @end

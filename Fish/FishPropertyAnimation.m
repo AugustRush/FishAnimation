@@ -28,7 +28,7 @@ typedef id (^CaculateValueFunction)(CGFloat frame,id startValue, id toValue);
 #define CaculateValueFunction(frame,startValue,toValue) ^id(CGFloat frame,id startValue, id toValue)
 
 struct FishMathStruct {
-    CGFloat first,second,third,fouth,fifth,sixth;
+    CGFloat first,second,third,fouth;
 };
 
 NS_INLINE struct FishMathStruct FishMath(struct FishMathStruct start,struct FishMathStruct to,CGFloat frame){
@@ -38,8 +38,6 @@ NS_INLINE struct FishMathStruct FishMath(struct FishMathStruct start,struct Fish
     last.second = start.second + (to.second - start.second)*frame;
     last.third = start.third + (to.third - start.third)*frame;
     last.fouth = start.fouth + (to.fouth - start.fouth)*frame;
-    last.fifth = start.fifth + (to.fifth - start.fifth)*frame;
-    last.sixth = start.sixth + (to.sixth - start.fifth)*frame;
     return last;
 };
 

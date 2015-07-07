@@ -10,7 +10,7 @@
 
 @implementation UIView (FishChainable)
 
--(MoveCenterChainableBlock)moveCenter
+-(PointChainableBlock)moveCenter
 {
     return ^UIView *(CGPoint offset, FishAnimationTimingFunctionType type){
         NSLog(@"offset is %@ , type is %lu",NSStringFromCGPoint(offset),(unsigned long)type);

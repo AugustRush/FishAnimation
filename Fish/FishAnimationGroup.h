@@ -12,6 +12,11 @@
 
 @property (nonatomic, strong, readonly) NSArray *animations;
 
+//
+//delay can be a section animation control, so group animation deley is invalidate
+///
+//@property (nonatomic, assign) CFTimeInterval delay;
+
 -(instancetype)initWithAnimations:(NSArray *)animations;
 
 @end

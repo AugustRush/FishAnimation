@@ -13,8 +13,6 @@
 
 @property (nonatomic, strong) NSArray *animations;
 @property (nonatomic, assign) NSUInteger currentSecton;
-@property (nonatomic, assign) CFTimeInterval currentSectionTime;
-@property (nonatomic, assign) CFTimeInterval cumulativeTime;
 @property (nonatomic, assign) BOOL completed;
 
 @end
@@ -27,26 +25,18 @@
     if (self) {
         self.animations = animations;
         self.currentSecton = 0;
-        self.cumulativeTime = 0.0;
-        FishAnimation *animation = animations[0];
-        self.currentSectionTime = [animation duration];
     }
     return self;
 }
 
 -(void)renderforObject:(id)object
 {
-    _cumulativeTime += frameDuration;
-    CFTimeInterval progress = _cumulativeTime/_currentSectionTime;
-    FishAnimation *animation = self.animations[self.currentSecton];
-    [animation animationDidChangedFrameValue:[animation.timingFunction getValueWithCurrentTime:progress] forObject:object];
-    if (progress >= 1.0) {
-        _cumulativeTime = 0.0;
-        if (self.currentSecton < self.animations.count - 1) {
-            ++self.currentSecton;
-            animation = self.animations[self.currentSecton];
-            self.currentSectionTime = [animation duration];
-        }else{
+    //maybe out of bounds
+    FishAnimation *animation = self.animations[_currentSecton];
+    [animation renderforObject:object];
+    if ([animation isCompleted]) {
+        ++_currentSecton;
+        if (_currentSecton == self.animations.count) {
             self.completed = YES;
         }
     }
