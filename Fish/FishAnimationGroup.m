@@ -15,6 +15,7 @@
 @property (nonatomic, assign) NSUInteger currentSecton;
 @property (nonatomic, assign) CFTimeInterval currentSectionTime;
 @property (nonatomic, assign) CFTimeInterval cumulativeTime;
+@property (nonatomic, assign) BOOL completed;
 
 @end
 
@@ -51,5 +52,9 @@
     }
 }
 
+-(BOOL)isCompleted
+{
+    return self.completed;
+}
 
 @end
