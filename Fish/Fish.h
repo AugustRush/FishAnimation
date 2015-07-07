@@ -15,5 +15,6 @@
 #import "FishTimingFunction.h"
 #import "FishAnimationGroup.h"
 #import "NSObject+FishAnimation.h"
+#import "UIView+FishChainable.h"
 
 #endif

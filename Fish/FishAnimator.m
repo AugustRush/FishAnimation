@@ -85,7 +85,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
     [CATransaction setDisableActions:YES];
     if (_animateList.allObjects.count > 0) {
         for (FishAnimationItem *item in _animateList.allObjects) {
-            if (!item.animation.completed) {
+            if (![item.animation isCompleted]) {
                 [item.animation renderforObject:item.object];
             }else{
                 [self removeAnimationForObject:item.object Key:item.key];

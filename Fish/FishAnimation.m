@@ -9,6 +9,12 @@
 #import "FishAnimation.h"
 #import "FishAnimator.h"
 
+@interface FishAnimation ()
+
+@property (nonatomic, assign, readwrite) BOOL completed;
+
+@end
+
 @implementation FishAnimation
 {
     CFTimeInterval _beginTime;
@@ -35,10 +41,15 @@
     _beginTime += frameDuration;
     CFTimeInterval progress = _beginTime/(CFTimeInterval)_duration;
     if (progress >= 1) {
-        self.completed = YES;
+        _completed = YES;
         progress = 1;
     }
     [self animationDidChangedFrameValue:[self.timingFunction getValueWithCurrentTime:progress] forObject:object];
+}
+
+-(BOOL)isCompleted
+{
+    return self.completed;
 }
 
 -(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object{}
