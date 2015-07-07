@@ -14,6 +14,7 @@ NSString *const kFishViewAlpha = @"alpha";
 NSString *const kFishViewBackgroundColor = @"backgroundColor";
 NSString *const kFishViewCenter = @"center";
 NSString *const kFishViewSize = @"bounds";
+NSString *const kFishViewTransform = @"transform";
 /**
  *  define caculate function block
  *
@@ -28,7 +29,7 @@ typedef id (^CaculateValueFunction)(CGFloat frame,id startValue, id toValue);
 #define CaculateValueFunction(frame,startValue,toValue) ^id(CGFloat frame,id startValue, id toValue)
 
 struct FishMathStruct {
-    CGFloat first,second,third,fouth;
+    CGFloat first,second,third,fouth,fifth,sixth;
 };
 
 NS_INLINE struct FishMathStruct FishMath(struct FishMathStruct start,struct FishMathStruct to,CGFloat frame){
@@ -38,6 +39,8 @@ NS_INLINE struct FishMathStruct FishMath(struct FishMathStruct start,struct Fish
     last.second = start.second + (to.second - start.second)*frame;
     last.third = start.third + (to.third - start.third)*frame;
     last.fouth = start.fouth + (to.fouth - start.fouth)*frame;
+    last.fifth = start.fifth + (to.fifth - start.fifth)*frame;
+    last.sixth = start.sixth + (to.sixth - start.sixth)*frame;
     return last;
 };
 
@@ -111,6 +114,29 @@ static CaculateValueFunction FishBoundsSizeFunc = CaculateValueFunction(f, s, t)
     return [NSValue valueWithCGRect:CGRectMake(0, 0, last.first, last.second)];
 };
 
+static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, t){
+    CGAffineTransform sp = [s CGAffineTransformValue];
+    CGAffineTransform tp = [t CGAffineTransformValue];
+    
+    struct FishMathStruct start,to,last;
+    start.first = sp.a;
+    start.second = sp.b;
+    start.third = sp.c;
+    start.fouth = sp.d;
+    start.fifth = sp.tx;
+    start.sixth = sp.ty;
+    
+    to.first = tp.a;
+    to.second = tp.b;
+    to.third = tp.c;
+    to.fouth = tp.d;
+    to.fifth = tp.tx;
+    to.sixth = tp.ty;
+    
+    last = FishMath(start, to, f);
+    return [NSValue valueWithCGAffineTransform:CGAffineTransformMake(last.first, last.second, last.third, last.fouth, last.fifth, last.sixth)] ;
+};
+
 //
 //  property animation implementation
 //
@@ -135,6 +161,9 @@ static CaculateValueFunction FishBoundsSizeFunc = CaculateValueFunction(f, s, t)
 -(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object
 {
     id value = self.caculateValueFunction(frameValue,self.fromValue,self.toValue);
+    if (self.keyPath == kFishViewTransform) {
+        [object setValue:[NSValue valueWithCGAffineTransform: CGAffineTransformIdentity] forKeyPath:self.keyPath];
+    }
     [object setValue:value forKeyPath:self.keyPath];
 }
 
@@ -148,6 +177,8 @@ static CaculateValueFunction FishBoundsSizeFunc = CaculateValueFunction(f, s, t)
         return FishCenterFunc;
     }else if (keyPath == kFishViewSize){
         return FishBoundsSizeFunc;
+    }else if (keyPath == kFishViewTransform){
+        return FishViewRatationFunc;
     }
     
     return nil;

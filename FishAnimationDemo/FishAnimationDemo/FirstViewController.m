@@ -45,14 +45,16 @@
     animation2.fromValue = [NSValue valueWithCGSize:self.FirstView.bounds.size];
     animation2.toValue = [NSValue valueWithCGSize:CGSizeMake(10+arc4random()%200, 10+arc4random()%400)];
     
-    
-    //一起添加为同步动画
+    FishPropertyAnimation *animation3 = [FishPropertyAnimation animationWithKeyPath:kFishViewTransform];
+    animation3.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeLinear];
+    animation3.duration = 2;
+    animation3.fromValue = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation(0)];
+    animation3.toValue = [NSValue valueWithCGAffineTransform:CGAffineTransformMakeRotation(M_PI / 2.0f)];
 //    [self.FirstView fish_addAnimation:animation forKey:@"test"];
 //    [self.FirstView fish_addAnimation:animation1 forKey:@"test1"];
 //    [self.FirstView fish_addAnimation:animation2 forKey:@"test2"];
     
-    //组动画按照顺序执行
-    FishAnimationGroup *group = [[FishAnimationGroup alloc] initWithAnimations:@[animation,animation1,animation2]];
+    FishAnimationGroup *group = [[FishAnimationGroup alloc] initWithAnimations:@[animation,animation1,animation2,animation3]];
     [self.FirstView fish_addAnimation:group forKey:@"test3"];
     
     
