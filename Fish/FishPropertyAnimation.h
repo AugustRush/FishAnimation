@@ -32,3 +32,11 @@ extern NSString *const kFishViewTransform;
 /////////layer animate key path constants
 
 extern NSString *const kFishLayerCornerRadius;
+extern NSString *const kFishLayerOpacity;
+extern NSString *const kFishLayerScale;
+extern NSString *const kFishLayerBorderWidth;
+extern NSString *const kFishLayerBackgroundColor;
+extern NSString *const kFishLayerRotationX;
+extern NSString *const kFishLayerRotationY;
+extern NSString *const kFishLayerRotationZ;
+extern NSString *const kFishLayerRotationXY;

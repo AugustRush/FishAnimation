@@ -81,6 +81,7 @@ static Boolean pointerEqual(const void *object1,const void *object2){
 
 -(void)render
 {
+    NSLog(@"all niamtions is %@",_animateList.allObjects);
     [CATransaction begin];
     [CATransaction setDisableActions:YES];
     if (_animateList.allObjects.count > 0) {
@@ -138,6 +139,8 @@ static Boolean pointerEqual(const void *object1,const void *object2){
         return;
     }
     NSMutableDictionary *dict = CFDictionaryGetValue(_animationDict, (__bridge void *)object);
+    FishAnimationItem *item = [dict objectForKey:key];
+    [_animateList removeObject:item];
     [dict removeObjectForKey:key];
     [self updateDisplayLinkState];
 }

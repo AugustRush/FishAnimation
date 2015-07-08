@@ -26,6 +26,8 @@
     if (self) {
         self.timingFunction = [FishTimingFunction timingFunctionWithType:FishAnimationTimingFunctionTypeLinear];
         _beginTime = 0.0;
+        self.duration = 0.3;
+        self.delay = 0.0;
     }
     return self;
 }

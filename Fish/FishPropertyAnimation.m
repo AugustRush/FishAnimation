@@ -7,6 +7,7 @@
 //
 
 #import "FishPropertyAnimation.h"
+#import <QuartzCore/QuartzCore.h>
 
 #pragma mark - animated keypath constants
 
@@ -19,10 +20,15 @@ NSString *const kFishViewTransform = @"transform";
 
 
 //layer
-
 NSString *const kFishLayerCornerRadius = @"layer.cornerRadius";
-
-
+NSString *const kFishLayerOpacity = @"layer.opacity";
+NSString *const kFishLayerScale = @"layer.transform";
+NSString *const kFishLayerBackgroundColor = @"layer.backgroundColor";
+NSString *const kFishLayerBorderWidth = @"layer.borderWidth";
+NSString *const kFishLayerRotationX = @"layerRotationX.transform";
+NSString *const kFishLayerRotationY = @"layerRotationY.transform";
+NSString *const kFishLayerRotationZ = @"layerRotationZ.transform";
+NSString *const kFishLayerRotationXY = @"layerRotationXY.transform";
 
 /**
  *  define caculate function block
@@ -53,7 +59,7 @@ NS_INLINE struct FishMathStruct FishMath(struct FishMathStruct start,struct Fish
     return last;
 };
 
-static CaculateValueFunction FishAlphaFunc = CaculateValueFunction(f, s, t){
+static CaculateValueFunction FishOneDimentionalFunc = CaculateValueFunction(f, s, t){
     struct FishMathStruct start,to,last;
     start.first = [s floatValue];
     to.first = [t floatValue];
@@ -146,12 +152,86 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
     return [NSValue valueWithCGAffineTransform:CGAffineTransformMake(last.first, last.second, last.third, last.fouth, last.fifth, last.sixth)] ;
 };
 
+static CaculateValueFunction FishLayerScaleFunc = CaculateValueFunction(f, s, t){
+    CATransform3D sp= [s CATransform3DValue];
+    CATransform3D tp = [t CATransform3DValue];
+    
+    struct FishMathStruct start,to,last;
+    start.first = sp.m11;
+    start.second = sp.m22;
+    start.third = sp.m33;
+    
+    to.first = tp.m11;
+    to.second = tp.m22;
+    to.third = tp.m33;
+    
+    last = FishMath(start, to, f);
+    CATransform3D scale = CATransform3DMakeScale(last.first, last.second, last.third);
+    return [NSValue valueWithCATransform3D:scale];
+};
+
+static CaculateValueFunction FishLayerRotationXFunc = CaculateValueFunction(f, s, t){
+    CGFloat sp = [s floatValue];
+    CGFloat tp = [t floatValue];
+    
+    struct FishMathStruct start,to,last;
+    start.first = sp;
+    to.first = tp;
+    
+    last = FishMath(start, to, f);
+    CATransform3D scale = CATransform3DMakeRotation(last.first, 1.0, 0, 0);
+    return [NSValue valueWithCATransform3D:scale];
+};
+
+static CaculateValueFunction FishLayerRotationYFunc = CaculateValueFunction(f, s, t){
+    CGFloat sp = [s floatValue];
+    CGFloat tp = [t floatValue];
+    
+    struct FishMathStruct start,to,last;
+    start.first = sp;
+    to.first = tp;
+    
+    last = FishMath(start, to, f);
+    CATransform3D scale = CATransform3DMakeRotation(last.first, 0, 1.0, 0);
+    return [NSValue valueWithCATransform3D:scale];
+};
+
+static CaculateValueFunction FishLayerRotationZFunc = CaculateValueFunction(f, s, t){
+    CGFloat sp = [s floatValue];
+    CGFloat tp = [t floatValue];
+    
+    struct FishMathStruct start,to,last;
+    start.first = sp;
+    to.first = tp;
+    
+    last = FishMath(start, to, f);
+    CATransform3D scale = CATransform3DMakeRotation(last.first, 0.0, 0.0, 1.0);
+    return [NSValue valueWithCATransform3D:scale];
+};
+
+
+static CaculateValueFunction FishLayerRotationXYFunc = CaculateValueFunction(f, s, t){
+    CGFloat sp = [s floatValue];
+    CGFloat tp = [t floatValue];
+    
+    struct FishMathStruct start,to,last;
+    start.first = sp;
+    to.first = tp;
+    
+    last = FishMath(start, to, f);
+    CATransform3D scale = CATransform3DMakeRotation(last.first, 1.0, 1.0, 0);
+    return [NSValue valueWithCATransform3D:scale];
+};
+
+
+
 //
 //  property animation implementation
 //
 @interface FishPropertyAnimation ()
 
 @property (nonatomic, copy) CaculateValueFunction caculateValueFunction;
+@property (nonatomic, copy) NSString *realPath;
 
 @end
 
@@ -168,6 +248,7 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
     self = [super init];
     if (self) {
         self.keyPath = path;
+        self.realPath = [[path componentsSeparatedByString:@"."] lastObject];
         self.caculateValueFunction = [self getCaculateFunctionWithKeyPath:path];
     }
     return self;
@@ -178,13 +259,13 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
 -(void)animationDidChangedFrameValue:(CGFloat)frameValue forObject:(id)object
 {
     id value = self.caculateValueFunction(frameValue,self.fromValue,self.toValue);
-    [object setValue:value forKeyPath:self.keyPath];
+    [object setValue:value forKeyPath:self.realPath];
 }
 
 -(CaculateValueFunction)getCaculateFunctionWithKeyPath:(NSString *)keyPath
 {
     if (keyPath == kFishViewAlpha) {
-        return FishAlphaFunc;
+        return FishOneDimentionalFunc;
     }else if (keyPath == kFishViewBackgroundColor){
         return FishColorFunc;
     }else if (keyPath == kFishViewCenter){
@@ -194,7 +275,23 @@ static CaculateValueFunction FishViewRatationFunc = CaculateValueFunction(f, s, 
     }else if (keyPath == kFishViewTransform){
         return FishViewRatationFunc;
     }else if (keyPath == kFishLayerCornerRadius){
-        return FishAlphaFunc;
+        return FishOneDimentionalFunc;
+    }else if (keyPath == kFishLayerOpacity){
+        return FishOneDimentionalFunc;
+    }else if (keyPath == kFishLayerScale){
+        return FishLayerScaleFunc;
+    }else if (keyPath == kFishLayerBorderWidth){
+        return FishOneDimentionalFunc;
+    }else if (keyPath == kFishLayerBackgroundColor){
+        return FishOneDimentionalFunc;
+    }else if (keyPath == kFishLayerRotationX){
+        return FishLayerRotationXFunc;
+    }else if (keyPath == kFishLayerRotationY){
+        return FishLayerRotationYFunc;
+    }else if (keyPath == kFishLayerRotationXY){
+        return FishLayerRotationXYFunc;
+    }else if (keyPath == kFishLayerRotationZ){
+        return FishLayerRotationZFunc;
     }
     
     return nil;

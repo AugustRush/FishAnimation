@@ -10,8 +10,18 @@
 
 @interface FishSpringAnimation : FishPropertyAnimation
 
+/**
+ *  [10 - 40]
+ */
 @property (nonatomic, assign) CGFloat damping;
+/**
+ *  [1 - 40]
+ */
 @property (nonatomic, assign) CGFloat velocity;
+
+/**
+ *  [1 - 5]
+ */
 @property (nonatomic, assign) CGFloat mass;
 
 @end
