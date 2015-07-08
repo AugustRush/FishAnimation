@@ -22,8 +22,7 @@ typedef NS_ENUM(NSUInteger, FishAnimationTimingFunctionType) {
     FishAnimationTimingFunctionTypeBounceEaseOut,
     FishAnimationTimingFunctionTypeBackEaseIn,
     FishAnimationTimingFunctionTypeBackEaseOut,
-    FishAnimationTimingFunctionTypeBackEaseInOut,
-    FishAnimationTimingFunctionTypeTestSpring
+    FishAnimationTimingFunctionTypeBackEaseInOut
 };
 
 @interface FishTimingFunction : NSObject

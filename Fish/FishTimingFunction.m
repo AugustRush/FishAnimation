@@ -86,12 +86,6 @@ static TimingCurve FishBackEaseInOut = TimingCurve(t){
 };
 
 
-static TimingCurve FishTestSpring = TimingCurve(t){
-    
-    return 1-(pow(M_E, -20 * t) * cos(100 * t));
-};
-
-
 /**
  *  function impliment
  */
@@ -156,10 +150,6 @@ static TimingCurve FishTestSpring = TimingCurve(t){
             break;
         }
             
-        case FishAnimationTimingFunctionTypeTestSpring:{
-            return FishTestSpring;
-            break;
-        }
         default: {
             break;
         }

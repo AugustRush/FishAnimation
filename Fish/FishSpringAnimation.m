@@ -22,8 +22,8 @@
 +(instancetype)animationWithKeyPath:(NSString *)path
 {
     FishSpringAnimation *animation = [[FishSpringAnimation alloc] initWithKeyPath:path];
-    animation.mass = 2;
-    animation.damping = 30;
+    animation.mass = 1;
+    animation.damping = 10;
     animation.velocity = 20;
     return animation;
 }
